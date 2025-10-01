@@ -1,4 +1,4 @@
-#include "Sklad.h"
+#include "warehouse.h"
 #include <iostream>
 #include <windows.h>
 #include <string>
@@ -8,20 +8,20 @@ int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    Sklad sklad;
+    warehouse warehouse;
     int choice;
 
     do {
-        cout << "1. Додати товар\n";
-        cout << "2. Збільшити кількість товару\n";
-        cout << "3. Зменшити кількість товару\n";
-        cout << "4. Замінити товар\n";
-        cout << "5. Пошук товару за назвою\n";
-        cout << "6. Пошук товару за кількістю\n";
-        cout << "7. Пошук товару за ціною\n";
-        cout << "8. Показати всі товари\n";
-        cout << "0. Вихід\n";
-        cout << "Ваш вибір: ";
+        cout << "1. Add product\n";
+        cout << "2. Increase product quantity\n";
+        cout << "3. Decrease product quantity\n";
+        cout << "4. Replace product\n";
+        cout << "5. Search product by name\n";
+        cout << "6. Search product by quantity\n";
+        cout << "7. Search product by price\n";
+        cout << "8. Show all products\n";
+        cout << "0. Exit\n";
+        cout << "Your choice: ";
         cin >> choice;
 
         switch (choice) {
@@ -30,118 +30,118 @@ int main() {
             int quantity;
             double price;
 
-            cout << "Введіть назву товару: ";
+            cout << "Enter product name: ";
             cin >> ws;
             getline(cin, name);
-            cout << "Введіть кількість: ";
+            cout << "Enter quantity: ";
             cin >> quantity;
-            cout << "Введіть ціну: ";
+            cout << "Enter price: ";
             cin >> price;
 
             try {
-                Tovar t(name, quantity, price);
-                sklad.addTovar(t);
-                cout << "Товар додано.\n";
+                product t(name, quantity, price);
+                warehouse.addTovar(t);
+                cout << "Product added.\n";
             }
             catch (const char* msg) {
-                cerr << "Помилка: " << msg << endl;
+                cerr << "Error: " << msg << endl;
             }
             break;
         }
 
         case 2: {
             int index;
-            cout << "Введіть номер товару для збільшення кількості: ";
+            cout << "Enter product number to increase quantity: ";
             cin >> index;
 
             try {
-                sklad.incrementQuantity(index);
-                cout << "Кількість збільшено.\n";
+                warehouse.incrementQuantity(index);
+                cout << "Quantity increased.\n";
             }
             catch (const char* msg) {
-                cerr << "Помилка: " << msg << endl;
+                cerr << "Error: " << msg << endl;
             }
             break;
         }
 
         case 3: {
             int index;
-            cout << "Введіть номер товару для зменшення кількості: ";
+            cout << "Enter product number to decrease quantity: ";
             cin >> index;
 
             try {
-                sklad.decrementQuantity(index);
-                cout << "Кількість зменшено.\n";
+                warehouse.decrementQuantity(index);
+                cout << "Quantity decreased.\n";
             }
             catch (const char* msg) {
-                cerr << "Помилка: " << msg << endl;
+                cerr << "Error: " << msg << endl;
             }
             break;
         }
 
         case 4: {
             int index;
-            cout << "Введіть номер товару для заміни: ";
+            cout << "Enter product number to replace: ";
             cin >> index;
 
             string name;
             int quantity;
             double price;
 
-            cout << "Введіть нову назву: ";
+            cout << "Enter new name: ";
             cin >> ws;
             getline(cin, name);
-            cout << "Введіть нову кількість: ";
+            cout << "Enter new quantity: ";
             cin >> quantity;
-            cout << "Введіть нову ціну: ";
+            cout << "Enter new price: ";
             cin >> price;
 
             try {
-                Tovar t(name, quantity, price);
-                sklad.replaceTovar(index, t);
-                cout << "Товар замінено.\n";
+                product t(name, quantity, price);
+                warehouse.replaceProduct(index, t);
+                cout << "Product replaced.\n";
             }
             catch (const char* msg) {
-                cerr << "Помилка: " << msg << endl;
+                cerr << "Error: " << msg << endl;
             }
             break;
         }
 
         case 5: {
             string name;
-            cout << "Введіть назву для пошуку: ";
+            cout << "Enter name to search: ";
             cin >> ws;
             getline(cin, name);
-            sklad.searchByName(name);
+            warehouse.search(name);
             break;
         }
 
         case 6: {
             int q;
-            cout << "Введіть кількість для пошуку: ";
+            cout << "Enter quantity to search: ";
             cin >> q;
-            sklad.searchByQuantity(q);
+            warehouse.search(q);
             break;
         }
 
         case 7: {
             double p;
-            cout << "Введіть ціну для пошуку: ";
+            cout << "Enter price to search: ";
             cin >> p;
-            sklad.searchByPrice(p);
+            warehouse.search(p);
             break;
         }
 
         case 8:
-            sklad.printAll();
+            warehouse.printAll();
             break;
 
         case 0:
-            cout << "Вихід з програми.\n";
+            cout << "Exiting the program.\n";
             break;
 
         default:
-            cout << "Невірний вибір!\n";
+            cout << "Invalid choice!\n";
         }
 
     } while (choice != 0);

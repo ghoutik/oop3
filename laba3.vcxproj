@@ -128,11 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="sklad.cpp" />
+    <ClCompile Include="warehouse.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sklad.h" />
-    <ClInclude Include="tovar.h" />
+    <ClInclude Include="warehouse.h" />
+    <ClInclude Include="product.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

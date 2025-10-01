@@ -2,14 +2,14 @@
 #include <string>
 using namespace std;
 
-class Tovar {
+class product {
 private:
     string name;
     int quantity;
     double price;
 
 public:
-    Tovar(const string& n = "", int q = 0, double p = 0.0) {
+    product(const string& n = "", int q = 0, double p = 0.0) {
         setName(n);
         setQuantity(q);
         setPrice(p);
@@ -31,15 +31,15 @@ public:
     int getQuantity() const { return quantity; }
     double getPrice() const { return price; }
 
-    Tovar& operator++() { ++quantity; return *this; }
+    product& operator++() { ++quantity; return *this; }
 
-    Tovar& operator--() {
+    product& operator--() {
         if (quantity > 0) --quantity;
         else throw "Ê³כüך³סעü גזו 0";
         return *this;
     }
 
-    Tovar& operator=(const Tovar& other) {
+    product& operator=(const product& other) {
         if (this != &other) {
             name = other.name;
             quantity = other.quantity;
