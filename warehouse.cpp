@@ -5,24 +5,24 @@ using namespace std;
 warehouse::warehouse(int maxSize) {
     capacity = maxSize;
     count = 0;
-    items = new product[capacity];
+    items = new Product[capacity];
 }
 
 warehouse::~warehouse() {
     delete[] items;
 }
 
-void warehouse::addTovar(const product& t) {
-    if (count >= capacity) throw "Склад повний!";
+void warehouse::addProduct(const Product& t) {
+    if (count >= capacity) throw "Warehouse is full!";
     items[count++] = t;
 }
 
 void warehouse::printAll() const {
     if (count == 0) {
-        cout << "Склад порожній.\n";
+        cout << "Warehouse is empty.\n";
         return;
     }
-    cout << "=== Вміст складу ===\n";
+    cout << "=== Warehouse Contents ===\n";
     for (int i = 0; i < count; i++) {
         cout << i << ". ";
         items[i].print();
@@ -30,34 +30,34 @@ void warehouse::printAll() const {
 }
 
 void warehouse::incrementQuantity(int index) {
-    if (index < 0 || index >= count) throw "Невірний індекс";
+    if (index < 0 || index >= count) throw "Invalid index";
     ++items[index];
 }
 
 void warehouse::decrementQuantity(int index) {
-    if (index < 0 || index >= count) throw "Невірний індекс";
+    if (index < 0 || index >= count) throw "Invalid index";
     --items[index];
 }
 
-void warehouse::replaceProduct(int index, const product& t) {
-    if (index < 0 || index >= count) throw "Невірний індекс";
+void warehouse::replaceProduct(int index, const Product& t) {
+    if (index < 0 || index >= count) throw "Invalid index";
     items[index] = t;
 }
 
 void warehouse::search(const string& name) const {
-    cout << "Пошук за назвою '" << name << "':\n";
+    cout << "Search by name '" << name << "':\n";
     for (int i = 0; i < count; i++)
         if (items[i].getName() == name) items[i].print();
 }
 
 void warehouse::search(int quantity) const {
-    cout << "Пошук за кількістю '" << quantity << "':\n";
+    cout << "Search by quantity '" << quantity << "':\n";
     for (int i = 0; i < count; i++)
         if (items[i].getQuantity() == quantity) items[i].print();
 }
 
 void warehouse::search(double price) const {
-    cout << "Пошук за ціною '" << price << "':\n";
+    cout << "Search by price '" << price << "':\n";
     for (int i = 0; i < count; i++)
         if (items[i].getPrice() == price) items[i].print();
 }

@@ -35,8 +35,8 @@ int main() {
             cin >> price;
 
             try {
-                product t(name, quantity, price);
-                warehouse.addTovar(t);
+                Product t(name, quantity, price);
+                warehouse.addProduct(t);
                 cout << "Product added.\n";
             }
             catch (const char* msg) {
@@ -93,7 +93,7 @@ int main() {
             cin >> price;
 
             try {
-                product t(name, quantity, price);
+                Product t(name, quantity, price);
                 warehouse.replaceProduct(index, t);
                 cout << "Product replaced.\n";
             }

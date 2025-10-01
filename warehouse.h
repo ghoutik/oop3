@@ -2,7 +2,7 @@
 
 class warehouse {
 private:
-    product* items;
+    Product* items;
     int count;
     int capacity;
 
@@ -10,12 +10,12 @@ public:
     warehouse(int maxSize = 10);
     ~warehouse();
 
-    void addTovar(const product& t);
+    void addProduct(const Product& t);
     void printAll() const;
 
     void incrementQuantity(int index);
     void decrementQuantity(int index);
-    void replaceProduct(int index, const product& t);
+    void replaceProduct(int index, const Product& t);
 
     void search(const string& name) const;
     void search(int quantity) const;
